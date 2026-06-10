@@ -1,0 +1,66 @@
+{
+  "name": "multiplus-desktop",
+  "version": "10.6.12",
+  "description": "Multi Plus — Facebook Multi-Account Switcher for Desktop",
+  "main": "main.js",
+  "author": "Multi Plus",
+  "scripts": {
+    "web": "node server.js",
+    "start": "electron .",
+    "dist:win": "electron-builder --win --x64 --publish never",
+    "dist:mac": "electron-builder --mac --publish never",
+    "dist:linux": "electron-builder --linux --publish never"
+  },
+  "build": {
+    "appId": "com.liteplus.desktop",
+    "productName": "Multi Plus",
+    "copyright": "Multi Plus",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "fb-preload.js",
+      "index.html",
+      "inject.js",
+      "icon.png"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "icon.png",
+      "category": "public.app-category.social-networking"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "icon.png",
+      "category": "Network"
+    }
+  },
+  "dependencies": {
+    "electron-store": "^8.1.0",
+    "express": "^5.2.1",
+    "archiver": "^5.3.1"
+  },
+  "devDependencies": {
+    "electron": "^29.0.0",
+    "electron-builder": "^24.9.1"
+  }
+}
